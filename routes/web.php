@@ -36,6 +36,6 @@ Route::get('/posts/{id}/edit',[\App\Http\Controllers\PostController::class, "edi
 
 Route::put('/posts/{id}/update',[\App\Http\Controllers\PostController::class, "update"])->name('posts.update');
 
-Route::delete('/posts/{id}/destroy',[\App\Http\Controllers\PostController::class, 'destroy'])->name('posts.destroy');
+Route::get('/posts/{id}/destroy',[\App\Http\Controllers\PostController::class, 'destroy'])->name('posts.destroy');
 
 
