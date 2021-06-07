@@ -6,10 +6,11 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasApiTokens;
 
     /**
      * The attributes that are mass assignable.
@@ -40,4 +41,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    /*
+    რელაცია one-to-one(users და birth_places ბაზებს შორის,). იგივე უნდა გავაკეთოთ birth_place ბაზის მოდელშიც,
+    ოღონდ იგ hasone - ისე მაგივრად გამოვიყენებთ belongsto
+    */
+    public function birthPlace(){
+        return $this->hasOne(BirthPlace::class);//ვუთითებთ related ბაზის მოდელს.
+    }
 }

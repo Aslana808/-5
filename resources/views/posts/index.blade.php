@@ -67,6 +67,24 @@
                                 {{$post->post_text}}
                             </div>
                         </div>
+                        <div class="ml-12">
+                            <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
+                                @foreach($post->comments as $comment)
+                                    <div>
+                                        {{$comment->comment_text}}
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                        <div class="ml-12">
+                            <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
+                                @foreach($post->tags as $tag)
+                                    <div>
+                                        {{$tag->name}}
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
                         <div class="el-4 text-lg leading-7 font-semibold">
                             <form method="POST", action="{{route('posts.destroy', $post->id)}}">
                                 @csrf

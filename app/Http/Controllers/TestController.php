@@ -25,7 +25,8 @@ class TestController extends Controller
         }
         else return "wrong action!";
     }
-//    public function test(){
-//        echo "hello world";
-//    }
+    public function test(Request $request){
+        dd('test page');
+    }
+
 }

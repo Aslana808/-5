@@ -17,3 +17,13 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('/register', [\App\Http\Controllers\Api\AuthController::class, 'register']);
+
+Route::post('/login', [\App\Http\Controllers\Api\AuthController::class, 'login']);
+
+
+Route::prefix('posts')->middleware('auth:api')->group(function (){
+    //ვქმნით api -ს და შესაბამისად ამ apiზე მიმართვისას იმუშავებს Api\PostController კლასის ფუნქცია index და დააბრუნებს ყველა პოსტს.
+    Route::get('/', [\App\Http\Controllers\Api\PostController::class, 'index']);
+});
