@@ -20,7 +20,7 @@ Route::get('/', function (){
 
 Route::get('/calculate', [\App\Http\Controllers\TestController::class, 'calculate']);
 
-Route::get('/test', [\App\Http\Controllers\TestController::class, "test"]);
+Route::get('/test', [\App\Http\Controllers\TestController::class, "test"])->middleware(\App\Http\Middleware\TestMiddleware::class);
 
 Route::get('/posts', [\App\Http\Controllers\PostController::class, "index"])->name('posts.index');//->middleware('auth');//ეს კოდი გამოიყენება აუთენთიკაციის დასადებად
 
@@ -36,11 +36,17 @@ Route::get('/posts/{id}/edit',[\App\Http\Controllers\PostController::class, "edi
 
 Route::put('/posts/{id}/update',[\App\Http\Controllers\PostController::class, "update"])->name('posts.update');
 
-Route::get('/posts/{id}/destroy',[\App\Http\Controllers\PostController::class, 'destroy'])->name('posts.destroy');
+Route::delete('/posts/{id}/destroy',[\App\Http\Controllers\PostController::class, 'destroy'])->name('posts.destroy');
 
 Route::get('/login', [\App\Http\Controllers\loginController::class, "index"])->name('login');
 
 Route::post('/login', [\App\Http\Controllers\loginController::class, "login"])->name('users.login');
+
+Route::post('/logout', [\App\Http\Controllers\loginController::class, "logout"])->name('logout');
+
+Route::get('/register', [\App\Http\Controllers\loginController::class, "show"]);
+
+Route::post('/register', [\App\Http\Controllers\loginController::class, "register"])->name('register');
 
 //Route::get('/test1', [\App\Http\Controllers\TestController::class, "test"])->name('test')->middleware(\App\Http\Middleware\TestMiddleware::class);
 
@@ -49,7 +55,7 @@ Route::prefix('user')->middleware(\App\Http\Middleware\TestMiddleware::class)->g
 });
 
 
-//Auth::routes(['register' => false]);
+//Auth::routes(['register' => false]);//ლარაველის დაგენერირებული აუთენთიკაციის როუტები.
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

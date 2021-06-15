@@ -22,6 +22,7 @@ class PostController extends Controller
         //$posts = Post::all();
         $posts = Post::with('comments')->get();//რელაციის გაკეთებისას ნაკლები queryს გაკეთება მოუწევს ამ ჩანაწერს ვიდრე Post::all().
         return view('posts.index', compact('posts'));
+        //return view('welcome');
         //მონაცემების გაფილტვრა(where - ის გამოყენებით)
         //$post = post::where('author_name', '=', 'test_author')->get();
         //მონაცემების დალაგება title სვეტის მიხედვით(orderby - ის გამოყენებით)

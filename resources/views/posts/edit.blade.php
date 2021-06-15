@@ -75,7 +75,13 @@
                         <div class="form-group">
                             <select name="tags[]" id="" multiple>
                                 @foreach($tags as $tag)
-                                        <option value="{{$tag->id}}" >{{$tag->name}}</option>
+                                    @foreach($post->tags as $post_tag)
+                                        @if($post_tag->id == $tag->id)
+                                            <option value="{{$tag->id}}" selected >{{$tag->name}}</option>
+                                        @else
+                                            <option value="{{$tag->id}}"  >{{$tag->name}}</option>
+                                        @endif
+                                    @endforeach
                                 @endforeach
                             </select>
                         </div>
