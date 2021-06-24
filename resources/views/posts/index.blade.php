@@ -93,7 +93,12 @@
                                     DELETE
                                 </button>
                             </form>
-
+                            <form method="POST", action="{{route('post.approve', $post->id)}}">
+                                @csrf
+                                <button type="submit" class="fa fa-trash">
+                                    APPROVE
+                                </button>
+                            </form>
                         </div>
                     </div>
                 @endforeach

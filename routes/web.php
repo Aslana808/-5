@@ -38,6 +38,8 @@ Route::put('/posts/{id}/update',[\App\Http\Controllers\PostController::class, "u
 
 Route::delete('/posts/{id}/destroy',[\App\Http\Controllers\PostController::class, 'destroy'])->name('posts.destroy');
 
+Route::post('/posts/approve', [\App\Http\Controllers\PostController::class, 'approve'])->name('post.approve');
+
 Route::get('/login', [\App\Http\Controllers\loginController::class, "index"])->name('login');
 
 Route::post('/login', [\App\Http\Controllers\loginController::class, "login"])->name('users.login');
@@ -67,3 +69,9 @@ Route::get('/user', function (){
 });
 
 Route::get('/get-data',[\App\Http\Controllers\DataController::class, 'getData']);
+
+
+// MAIL; NOTIFICATIONS
+Route::get('/mail', [\App\Http\Controllers\MailController::class, 'index'])->name('email');
+
+Route::post('/mail/send', [\App\Http\Controllers\MailController::class, 'send'])->name('mailSend');

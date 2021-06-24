@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreatePostRequest;
 use App\Models\Post;
 use App\Models\Tag;
+use App\Models\User;
+use App\Notifications\PostApproved;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use phpDocumentor\Reflection\Types\Object_;
@@ -108,6 +110,18 @@ class PostController extends Controller
     public function destroy($id){
         $post = Post::findorfail($id);
         $post->delete();
+        return redirect()->back();
+    }
+
+    public function approve(Post $post){
+        $post->is_approved = true;
+        $post->save();
+        $user = User::find(1);
+        $data = [
+            'text' => 'test text'
+        ];
+        $user->notify(new PostApproved($data));
+        //return response(['message' => 'The post has approved', 'post' => $post], 200);
         return redirect()->back();
     }
 

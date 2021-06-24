@@ -25,7 +25,8 @@ class PostFactory extends Factory
         return [
             'title' => $this->faker->title,
             'author_name' => $this->faker->name,
-            'post_text' => $this->faker->text
+            'post_text' => $this->faker->text,
+            'is_approved' => $this->faker->boolean
         ];
     }
 }
